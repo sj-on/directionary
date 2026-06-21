@@ -6,14 +6,14 @@ pagination:
   alias: letter
 permalink: "/{{ letter }}/index.html"
 eleventyComputed:
-  title: "{{ letter | upper }} – directionary"
-  description: "Words in directionary starting with {{ letter | upper }}."
+  title: "{{ letter | lower }} – directionary"
+  description: "words in directionary starting with {{ letter | lower }}."
 ---
 {% set letterWords = collections.words | byLetter(letter) %}
-<nav class="breadcrumb"><a href="/">directionary</a> / <span>{{ letter | upper }}</span></nav>
+<nav class="breadcrumb"><a href="/">directionary</a> / <span>{{ letter | lower }}</span></nav>
 
 <header class="letter-header">
-  <span class="tile tile--big">{{ letter | upper }}</span>
+  <span class="tile tile--big">{{ letter | lower }}</span>
   <p class="letter-count">{{ letterWords.length }} word{{ "s" if letterWords.length != 1 else "" }}</p>
 </header>
 
@@ -29,5 +29,5 @@ eleventyComputed:
   {% endfor %}
 </ul>
 {% else %}
-<p class="empty-state">no words starting with “{{ letter | upper }}” yet. <a href="/contribute/">add one?</a></p>
+<p class="empty-state">no words starting with “{{ letter | lower }}” yet. <a href="/contribute/">add one?</a></p>
 {% endif %}

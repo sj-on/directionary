@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 title: directionary
-description: A small, growing dictionary. older words. newer meanings.
+description: a small, growing dictionary. older words. newer meanings.
 ---
 <section class="hero">
   <div class="hero__heading">
@@ -27,7 +27,7 @@ description: A small, growing dictionary. older words. newer meanings.
 <section class="alphabet" aria-label="browse by letter">
   <div class="tile-grid">
     {% for letter in alphabet %}
-    <a class="tile" href="/{{ letter }}/">{{ letter | upper }}</a>
+    <a class="tile" href="/{{ letter }}/">{{ letter | lower }}</a>
     {% endfor %}
   </div>
 </section>

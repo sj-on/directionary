@@ -6,8 +6,7 @@
   "scripts": {
     "build": "eleventy && pagefind --site _site",
     "dev": "eleventy --serve",
-    "clean": "rm -rf _site .cache",
-    "dev:pf": "npm run build && npx serve _site"
+    "clean": "rm -rf _site .cache"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
