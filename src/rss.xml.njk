@@ -1,0 +1,25 @@
+---
+permalink: /rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ site.name }}</title>
+    <link>{{ site.url }}</link>
+    <description>{{ site.description }}</description>
+    <language>en-us</language>
+    <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml" />
+{% for item in collections.recentWords %}
+    <item>
+      <title>{{ item.data.word }}</title>
+      <link>{{ site.url }}{{ item.url }}</link>
+      <guid>{{ site.url }}{{ item.url }}</guid>
+      <description><![CDATA[{{ item.data.meaning }}{% if item.data.example %} “{{ item.data.example }}”{% endif %}]]></description>
+{% if item.data.dateAdded %}
+      <pubDate>{{ item.data.dateAdded }}T00:00:00Z</pubDate>
+{% endif %}
+    </item>
+{% endfor %}
+  </channel>
+</rss>

@@ -19,6 +19,17 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => a.data.word.localeCompare(b.data.word));
   });
 
+  eleventyConfig.addCollection("recentWords", (collectionApi) => {
+    return collectionApi
+      .getFilteredByTag("word")
+      .sort((a, b) => {
+        const aDate = a.data.dateAdded || "";
+        const bDate = b.data.dateAdded || "";
+        return bDate.localeCompare(aDate);
+      })
+      .slice(0, 10);
+  });
+
   return {
     dir: {
       input: "src",
