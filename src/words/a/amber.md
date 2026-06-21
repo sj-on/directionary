@@ -2,7 +2,7 @@
 word: "amber"
 pos: "noun"
 pronunciation: "/ˈæm.bɚ/"
-meaning: "fossilized tree resin, often golden in color, sometimes containing ancient insects."
-example: "the museum displayed a mosquito trapped in amber."
+meaning: "the official golden keeper of dead bodies."
+example: "the insect lost the argument. amber won."
 dateAdded: "2026-06-21"
 ---
