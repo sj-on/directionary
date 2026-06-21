@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: alphabet
+  size: 1
+  alias: letter
+permalink: "/{{ letter }}/index.html"
+eleventyComputed:
+  title: "{{ letter | upper }} – directionary"
+  description: "Words in directionary starting with {{ letter | upper }}."
+---
+{% set letterWords = collections.words | byLetter(letter) %}
+<nav class="breadcrumb"><a href="/">directionary</a> / <span>{{ letter | upper }}</span></nav>
+
+<header class="letter-header">
+  <span class="tile tile--big">{{ letter | upper }}</span>
+  <p class="letter-count">{{ letterWords.length }} word{{ "s" if letterWords.length != 1 else "" }}</p>
+</header>
+
+{% if letterWords.length %}
+<ul class="word-list">
+  {% for w in letterWords %}
+  <li>
+    <a class="word-list__item" href="/{{ letter }}/{{ w.data.slug }}/">
+      <span class="word-list__word">{{ w.data.word }}</span>
+      <span class="word-list__pos">{{ w.data.pos }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p class="empty-state">no words starting with “{{ letter | upper }}” yet. <a href="/contribute/">add one?</a></p>
+{% endif %}

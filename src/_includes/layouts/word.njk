@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+---
+<nav class="breadcrumb">
+  <a href="/">directionary</a> / <a href="/{{ letter }}/">{{ letter | upper }}</a> / <span>{{ word }}</span>
+</nav>
+
+<article class="word-card word-card--full">
+  <span data-pagefind-meta="title" hidden>{{ word }}</span>
+  <p class="word-card__eyebrow">entry</p>
+  <h1 class="word-card__word">{{ word }}</h1>
+  {% if pronunciation %}<p class="word-card__pronunciation">{{ pronunciation }}</p>{% endif %}
+  <span class="word-card__pos">{{ pos }}</span>
+  <p class="word-card__meaning">{{ meaning }}</p>
+  {% if example %}<p class="word-card__example">“{{ example }}”</p>{% endif %}
+  {% if dateAdded %}<p class="word-card__meta">added {{ dateAdded }}</p>{% endif %}
+  {% if content %}<div class="word-card__notes">{{ content | safe }}</div>{% endif %}
+</article>

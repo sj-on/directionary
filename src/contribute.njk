@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: contribute – directionary
+description: How to add a new word to directionary.
+permalink: /contribute/index.html
+---
+<nav class="breadcrumb"><a href="/">directionary</a> / <span>contribute</span></nav>
+
+<article class="prose">
+  <h1>add a word</h1>
+  <p>directionary grows one entry at a time. to add a word:</p>
+  <ol>
+    <li>fork the repository.</li>
+    <li>create a new file at <code>src/words/&lt;first-letter&gt;/&lt;word&gt;.md</code>.</li>
+    <li>fill in the frontmatter: <code>word</code>, <code>pos</code>, <code>meaning</code> — and optionally <code>pronunciation</code>, <code>example</code>, <code>dateAdded</code>.</li>
+    <li>open a pull request.</li>
+  </ol>
+  <p>template:</p>
+  <pre><code>---
+word: "Serendipity"
+pos: "noun"
+pronunciation: "/ˌser.ənˈdɪp.ə.ti/"
+meaning: "A pleasant surprise; finding something good without looking for it."
+example: "Meeting her was pure serendipity."
+dateAdded: "2026-06-21"
+---</code></pre>
+</article>

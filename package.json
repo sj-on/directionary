@@ -1,0 +1,15 @@
+{
+  "name": "directionary",
+  "version": "0.1.0",
+  "private": true,
+  "description": "older words. newer meanings.",
+  "scripts": {
+    "build": "eleventy && pagefind --site _site",
+    "dev": "eleventy --serve",
+    "clean": "rm -rf _site .cache"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "pagefind": "^1.1.0"
+  }
+}

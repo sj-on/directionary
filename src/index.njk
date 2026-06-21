@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+title: directionary
+description: A small, growing dictionary. older words. newer meanings.
+---
+<section class="hero">
+  <div class="hero__heading">
+    <h1 class="wordmark-large">directionary</h1>
+    <p class="pronunciation">/dɪˌrɛk.ʃəˈner.i/ — noun</p>
+    <p class="tagline">older words. newer meanings.</p>
+  </div>
+
+  <form class="search" id="search-form" role="search" onsubmit="return false;">
+    <label class="visually-hidden" for="search-input">search words</label>
+    <input id="search-input" type="search" placeholder="i'm looking for…" autocomplete="off">
+    <div id="search-results" class="search-results" hidden></div>
+  </form>
+</section>
+
+<section class="word-of-day" aria-labelledby="wod-heading">
+  <h2 id="wod-heading">word of the day</h2>
+  <div id="word-of-day-card" class="word-card">
+    <p class="word-card__loading">fetching today's word…</p>
+  </div>
+</section>
+
+<section class="alphabet" aria-label="browse by letter">
+  <div class="tile-grid">
+    {% for letter in alphabet %}
+    <a class="tile" href="/{{ letter }}/">{{ letter | upper }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+<script src="/assets/js/word-of-day.js" defer></script>
+<script src="/assets/js/search.js" defer></script>
