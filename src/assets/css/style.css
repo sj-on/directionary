@@ -231,6 +231,27 @@ main {
   z-index: 10;
   max-height: 320px;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg);
+}
+
+.search-results::-webkit-scrollbar {
+  width: 10px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 999px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-ink);
 }
 
 .search-results__item {

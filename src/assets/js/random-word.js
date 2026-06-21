@@ -1,8 +1,5 @@
 (function () {
-  const links = document.querySelectorAll("#random-link, #random-link-footer");
-  if (!links.length) return;
-
-  links.forEach((link) => {
+  document.querySelectorAll("#random-link, #random-link-footer").forEach((link) => {
     link.addEventListener("click", async function (e) {
       e.preventDefault();
       try {
