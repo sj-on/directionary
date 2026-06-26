@@ -1,25 +1,25 @@
 /* ---------------------------------------------------------------
-   directionary — design tokens
-   bg: lavender-white · accent: periwinkle · highlights: bubblegum
-   pink + mint · display: Baloo 2 (rounded, playful) · body: Nunito
+   directionary — a bolder, brighter visual refresh
 ----------------------------------------------------------------- */
 :root {
-  --bg: #fbf8ff;
+  --bg: #f7f2ff;
+  --bg-accent: #fff4fb;
   --surface: #ffffff;
-  --ink: #2b2640;
-  --muted: #6b6580;
-  --accent: #7c5cff;
-  --accent-ink: #5b3df0;
-  --accent-pink: #ff8fa3;
-  --accent-mint: #18a497;
-  --border: #e7e0fa;
+  --surface-strong: #fcf9ff;
+  --ink: #241f39;
+  --muted: #6f6885;
+  --accent: #6e4dff;
+  --accent-ink: #4728dd;
+  --accent-pink: #ff6f91;
+  --accent-mint: #14a28d;
+  --border: #e8dcff;
 
-  --radius-sm: 10px;
+  --radius-sm: 12px;
   --radius-md: 18px;
-  --radius-lg: 26px;
+  --radius-lg: 28px;
 
-  --shadow-sm: 0 2px 8px rgba(43, 38, 64, 0.06);
-  --shadow-md: 0 12px 28px rgba(124, 92, 255, 0.16);
+  --shadow-sm: 0 8px 22px rgba(36, 31, 57, 0.06);
+  --shadow-md: 0 20px 44px rgba(110, 77, 255, 0.16);
 
   --font-display: "Baloo 2", system-ui, sans-serif;
   --font-body: "Nunito", system-ui, sans-serif;
@@ -35,11 +35,50 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(255, 111, 145, 0.18), transparent 24%),
+    radial-gradient(circle at 90% 0%, rgba(110, 77, 255, 0.16), transparent 28%),
+    linear-gradient(135deg, var(--bg) 0%, var(--bg-accent) 100%);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  top: -6rem;
+  left: -5rem;
+  background: rgba(255, 111, 145, 0.22);
+}
+
+body::after {
+  right: -6rem;
+  bottom: -4rem;
+  background: rgba(20, 162, 141, 0.18);
+}
+
+.site-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1.2rem 1.1rem 3rem;
 }
 
 a {
@@ -90,16 +129,13 @@ pre {
   border-radius: var(--radius-sm);
 }
 
-/* ---------------------------------------------------------------
-   header
------------------------------------------------------------------ */
 .site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   max-width: 980px;
   margin: 0 auto;
-  padding: 1.5rem 1.5rem 0.5rem;
+  padding: 0.25rem 0.25rem 0.75rem;
 }
 
 .wordmark {
@@ -118,17 +154,20 @@ pre {
 
 .site-nav {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  flex-wrap: wrap;
 }
 
 .site-nav a {
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--accent-ink);
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(110, 77, 255, 0.16);
   border-radius: 999px;
-  padding: 0.4rem 0.9rem;
+  padding: 0.45rem 0.9rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .site-nav a:hover {
@@ -141,12 +180,9 @@ pre {
 main {
   max-width: 980px;
   margin: 0 auto;
-  padding: 1rem 1.5rem 4rem;
+  padding: 0.2rem 0 3rem;
 }
 
-/* ---------------------------------------------------------------
-   hero / homepage
------------------------------------------------------------------ */
 .hero {
   display: flex;
   align-items: flex-start;
@@ -155,17 +191,39 @@ main {
   flex-wrap: wrap;
   max-width: 980px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 1.5rem;
-  border-bottom: 1px dashed var(--border);
+  padding: 2.1rem 2rem 2rem;
+  border: 1px solid rgba(110, 77, 255, 0.16);
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 242, 255, 0.9));
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: auto auto -2rem -1.5rem;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  background: rgba(255, 111, 145, 0.13);
+  filter: blur(10px);
+}
+
+.hero__heading {
+  position: relative;
+  z-index: 1;
 }
 
 .wordmark-large {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-size: clamp(2.5rem, 6vw, 3.8rem);
   color: var(--accent-ink);
   margin: 0;
-  line-height: 1;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
 }
 
 .wordmark-large a {
@@ -179,33 +237,35 @@ main {
 }
 
 .pronunciation {
-  margin: 0.5rem 0 0;
+  margin: 0.6rem 0 0;
   color: var(--muted);
   font-style: italic;
 }
 
 .tagline {
-  margin: 0.35rem 0 0;
+  margin: 0.45rem 0 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
+  max-width: 34ch;
 }
 
 .search {
   position: relative;
-  flex: 0 1 320px;
+  flex: 0 1 340px;
   min-width: 240px;
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
 }
 
 .search input {
   width: 100%;
   font-family: var(--font-body);
   font-size: 1rem;
-  padding: 0.85rem 1.1rem;
+  padding: 0.95rem 1.15rem;
   border-radius: 999px;
-  border: 2px solid var(--border);
-  background: var(--surface);
+  border: 1px solid rgba(110, 77, 255, 0.18);
+  background: var(--surface-strong);
   color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .search input::placeholder {
@@ -215,16 +275,16 @@ main {
 .search input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px rgba(124, 92, 255, 0.15);
+  box-shadow: 0 0 0 4px rgba(110, 77, 255, 0.15);
 }
 
 .search-results {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 0.6rem);
   left: 0;
   right: 0;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(110, 77, 255, 0.16);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   padding: 0.4rem;
@@ -256,13 +316,13 @@ main {
 
 .search-results__item {
   display: block;
-  padding: 0.6rem 0.8rem;
+  padding: 0.65rem 0.8rem;
   border-radius: var(--radius-sm);
   color: var(--ink);
 }
 
 .search-results__item:hover {
-  background: var(--bg);
+  background: rgba(110, 77, 255, 0.07);
   text-decoration: none;
 }
 
@@ -273,33 +333,39 @@ main {
   font-size: 0.9rem;
 }
 
-/* ---------------------------------------------------------------
-   word of the day heading
------------------------------------------------------------------ */
 .word-of-day {
-  padding: 2.5rem 0 1rem;
+  padding: 2.35rem 0 1rem;
 }
 
 .word-of-day h2 {
   font-family: var(--font-display);
   font-size: 1.1rem;
   text-transform: lowercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   color: var(--accent-mint);
   margin: 0 0 1rem;
 }
 
-/* ---------------------------------------------------------------
-   word card — used for word-of-day (JS-filled) and full entry pages
------------------------------------------------------------------ */
 .word-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: 4px dashed var(--accent-pink);
+  background: linear-gradient(145deg, #ffffff 0%, #fcf8ff 100%);
+  border: 1px solid rgba(110, 77, 255, 0.14);
+  border-top: 4px solid var(--accent-pink);
   border-radius: var(--radius-lg);
-  padding: 1.75rem 2rem;
+  padding: 1.8rem 2rem;
   box-shadow: var(--shadow-md);
-  max-width: 560px;
+  max-width: 620px;
+  position: relative;
+}
+
+.word-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -0.75rem -0.75rem auto;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: rgba(20, 162, 141, 0.13);
+  filter: blur(8px);
 }
 
 .word-card--full {
@@ -315,19 +381,19 @@ main {
 .word-card__eyebrow {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.76rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent-pink);
-  background: rgba(255, 143, 163, 0.12);
+  background: rgba(255, 111, 145, 0.12);
   border-radius: 999px;
-  padding: 0.25rem 0.7rem;
+  padding: 0.26rem 0.72rem;
   margin: 0 0 0.6rem;
 }
 
 .word-card__word {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
   margin: 0 0 0.2rem;
   color: var(--ink);
 }
@@ -343,9 +409,9 @@ main {
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent-mint);
-  background: rgba(24, 164, 151, 0.12);
+  background: rgba(20, 162, 141, 0.12);
   border-radius: 999px;
-  padding: 0.2rem 0.7rem;
+  padding: 0.23rem 0.7rem;
   margin-bottom: 0.9rem;
 }
 
@@ -356,22 +422,22 @@ main {
 
 .word-card__example {
   margin: 0 0 0.75rem;
-  padding-left: 0.9rem;
-  border-left: 3px solid var(--border);
+  padding-left: 0.95rem;
+  border-left: 3px solid rgba(110, 77, 255, 0.16);
   color: var(--muted);
   font-style: italic;
 }
 
 .word-card__meta {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--muted);
 }
 
 .word-card__notes {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(110, 77, 255, 0.12);
 }
 
 .word-card__link {
@@ -381,17 +447,14 @@ main {
   color: var(--accent-ink);
 }
 
-/* ---------------------------------------------------------------
-   alphabet tiles
------------------------------------------------------------------ */
 .alphabet {
-  padding: 2.5rem 0 1rem;
+  padding: 2.3rem 0 1rem;
 }
 
 .tile-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
-  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: 0.7rem;
 }
 
 .tile {
@@ -399,12 +462,12 @@ main {
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
-  background: var(--surface);
-  border: 2px solid var(--border);
+  background: linear-gradient(145deg, #ffffff 0%, #f8f3ff 100%);
+  border: 1px solid rgba(110, 77, 255, 0.14);
   border-radius: var(--radius-sm);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   color: var(--ink);
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
@@ -414,30 +477,27 @@ main {
   text-decoration: none;
   transform: translateY(-3px) rotate(-2deg);
   box-shadow: var(--shadow-md);
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, #8d74ff 100%);
   color: #fff;
   border-color: var(--accent);
 }
 
 .tile--big {
-  width: 88px;
-  height: 88px;
-  font-size: 2.4rem;
-  background: var(--accent);
+  width: 90px;
+  height: 90px;
+  font-size: 2.35rem;
+  background: linear-gradient(135deg, var(--accent) 0%, #8d74ff 100%);
   color: #fff;
-  border-color: var(--accent);
+  border-color: transparent;
   border-radius: var(--radius-md);
   flex-shrink: 0;
 }
 
-/* ---------------------------------------------------------------
-   letter page
------------------------------------------------------------------ */
 .letter-header {
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  padding: 1.5rem 0;
+  padding: 1.35rem 0 1rem;
 }
 
 .letter-count {
@@ -451,7 +511,7 @@ main {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .word-list__item {
@@ -459,23 +519,24 @@ main {
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(110, 77, 255, 0.14);
   border-radius: var(--radius-md);
-  padding: 0.9rem 1.2rem;
+  padding: 0.95rem 1.15rem;
   color: var(--ink);
+  box-shadow: var(--shadow-sm);
 }
 
 .word-list__item:hover {
   text-decoration: none;
-  background: rgba(124, 92, 255, 0.06);
+  background: rgba(110, 77, 255, 0.06);
   border-color: var(--accent);
 }
 
 .word-list__word {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.08rem;
 }
 
 .word-list__pos {
@@ -490,9 +551,6 @@ main {
   padding: 1.5rem 0;
 }
 
-/* ---------------------------------------------------------------
-   breadcrumb
------------------------------------------------------------------ */
 .breadcrumb {
   font-size: 0.85rem;
   color: var(--muted);
@@ -508,31 +566,31 @@ main {
   font-weight: 700;
 }
 
-/* ---------------------------------------------------------------
-   contribute / prose page
------------------------------------------------------------------ */
 .prose {
-  max-width: 640px;
+  max-width: 680px;
   margin-top: 1rem;
+  padding: 0.15rem 0 0;
 }
 
 .prose h1 {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.1rem;
   color: var(--accent-ink);
+  margin-bottom: 0.6rem;
 }
 
 .prose pre {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(110, 77, 255, 0.12);
   border-radius: var(--radius-md);
   padding: 1rem 1.2rem;
   overflow-x: auto;
   font-size: 0.85rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .prose code {
-  background: rgba(124, 92, 255, 0.08);
+  background: rgba(110, 77, 255, 0.08);
   border-radius: 4px;
   padding: 0.1rem 0.35rem;
 }
@@ -542,14 +600,11 @@ main {
   padding: 0;
 }
 
-/* ---------------------------------------------------------------
-   footer
------------------------------------------------------------------ */
 .site-footer {
   max-width: 980px;
   margin: 2rem auto 0;
-  padding: 1.5rem 1.5rem 3rem;
-  border-top: 1px dashed var(--border);
+  padding: 1.5rem 1.5rem 2rem;
+  border-top: 1px dashed rgba(110, 77, 255, 0.16);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -572,12 +627,14 @@ main {
   justify-self: center;
 }
 
-/* ---------------------------------------------------------------
-   responsive
------------------------------------------------------------------ */
 @media (max-width: 640px) {
+  .site-shell {
+    padding: 0.8rem 0.8rem 2.2rem;
+  }
+
   .hero {
     flex-direction: column;
+    padding: 1.5rem 1.2rem;
   }
 
   .search {
@@ -601,15 +658,12 @@ main {
   }
 
   .tile--big {
-    width: 64px;
-    height: 64px;
-    font-size: 1.8rem;
+    width: 68px;
+    height: 68px;
+    font-size: 1.9rem;
   }
 }
 
-/* ---------------------------------------------------------------
-   motion preference
------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;

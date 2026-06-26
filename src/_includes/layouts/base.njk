@@ -15,32 +15,34 @@
 <body>
 <a class="skip-link" href="#main">skip to content</a>
 
-<section class="hero">
-  <div class="hero__heading">
-    <h1 class="wordmark-large"><a href="/">directionary</a></h1>
-    <p class="pronunciation">/dɪˌrɛk.ʃəˈner.i/ — noun</p>
-    <p class="tagline">older words. newer meanings.</p>
-  </div>
+<div class="site-shell">
+  <section class="hero">
+    <div class="hero__heading">
+      <h1 class="wordmark-large"><a href="/">directionary</a></h1>
+      <p class="pronunciation">/dɪˌrɛk.ʃəˈner.i/ — noun</p>
+      <p class="tagline">older words. newer meanings.</p>
+    </div>
 
-  <form class="search" id="search-form" role="search" onsubmit="return false;">
-    <label class="visually-hidden" for="search-input">search words</label>
-    <input id="search-input" type="search" placeholder="i'm looking for…" autocomplete="off">
-    <div id="search-results" class="search-results" hidden></div>
-  </form>
-</section>
+    <form class="search" id="search-form" role="search" onsubmit="return false;">
+      <label class="visually-hidden" for="search-input">search words</label>
+      <input id="search-input" type="search" placeholder="i'm looking for…" autocomplete="off">
+      <div id="search-results" class="search-results" hidden></div>
+    </form>
+  </section>
 
-<main id="main" data-pagefind-body>
-{{ content | safe }}
-</main>
+  <main id="main" data-pagefind-body>
+  {{ content | safe }}
+  </main>
 
-<footer class="site-footer">
-  <a class="wordmark" href="/">directionary</a>
-  <p>made for 🧬 with a 🧠 in their 💀</p>
-  <nav class="site-nav">
-    <a href="/contribute/">contribute</a>
-    <a href="#" id="random-link-footer">random</a>
-  </nav>
-</footer>
+  <footer class="site-footer">
+    <a class="wordmark" href="/">directionary</a>
+    <p>made for 🧬 with a 🧠 in their 💀</p>
+    <nav class="site-nav">
+      <a href="/contribute/">contribute</a>
+      <a href="#" id="random-link-footer">random</a>
+    </nav>
+  </footer>
+</div>
 
 <script src="/assets/js/random-word.js" defer></script>
 <script src="/assets/js/search.js" defer></script>
